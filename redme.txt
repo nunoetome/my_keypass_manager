@@ -1,12 +1,12 @@
+# my_keypass_manager
+This is a simple keypass manager application.
 
-1.
-
+## Preparation Steps
+1. Create a virtual environment
 python -m venv venv
 
-
-2.
+2. Activate the virtual environment
 venv\Scripts\activate
 
-3.
-
+3. Install the required packages
 pip install -r requirements.txt
