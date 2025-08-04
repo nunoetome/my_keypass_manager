@@ -1,5 +1,10 @@
 from pykeepass import PyKeePass
 import os
+"""
+Renomeia campos personalizados no ficheiro KeePass (.kdbx).
+Ex: substitui '_template' por '_t' em todas as entradas, 
+exceto nas que estão na ignore_list ou contêm substrings específicas.
+"""
 
 def renomear_campos():
     # Acede ao ficheiro .kdbx
@@ -79,7 +84,7 @@ def renomear_campos():
                 entry.delete_custom_property(custom_property)
 
                 print(f'\nRenomeado: {custom_property} → {new_key}')
-                modificados += 1
+                modificados += 1 
 
     # Salvar no mesmo ficheiro ou outro, se quiser backup
     kp.save()  # sobrescreve
