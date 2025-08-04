@@ -36,7 +36,6 @@ def renomear_campos():
         return
     print(f'Ficheiro {kdbx_path} carregado com sucesso.')
 
-
     modificados = 0
 
     # Itera sobre todas as entradas do KeePass
@@ -87,8 +86,7 @@ def renomear_campos():
     #kp.save('novo_arquivo.kdbx')  # para salvar como novo
 
     print(f'\n✅ Campos renomeados: {modificados}')
-
-
+    print('Operação concluída.')
 
 if __name__ == '__main__':
     renomear_campos()
