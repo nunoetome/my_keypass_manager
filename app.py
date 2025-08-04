@@ -17,8 +17,11 @@ def renomear_campos():
         ]
     #lista de substrings a serem ignoradas
     ignore_substrings = [
-        'etm_template',
-        'etm_t'
+        '_etm_options_',
+        '_etm_position_',
+        '_etm_title_',
+        '_etm_type_',
+        '_etm_template'
         ]
     
     # Verifica se o ficheiro existe
@@ -43,6 +46,22 @@ def renomear_campos():
     for entry in kp.entries:
         # Copia da dict original para iterar com segurança
         for custom_property in list(entry.custom_properties.keys()):
+            # Ignora se estiver na ignore_list
+            if custom_property in ignore_list:
+                continue
+            # Ignora se contiver alguma substring da ignore_substrings
+            if any(substring in custom_property for substring in ignore_substrings):
+                continue
+
+            # Verifica se a custom_property contém a string a ser substituída
+            # e se não é uma chave que já foi renomeada
+            # ou se não é uma chave que já existe
+            if custom_property.startswith(string_to_change_before) and custom_property != string_to_change_before:
+                print(f'\n⚠️ Atenção: A chave {custom_property} já foi renomeada. Ignorando.')
+                continue
+            # Se a custom_property contém a string a ser substituída
+            # e não é uma chave que já existe, renomeia
+            # Exemplo: _template → _t
             if string_to_change_before in custom_property:
                 new_key = custom_property.replace(string_to_change_before, string_to_change_after)
                 value = entry.get_custom_property(custom_property)
